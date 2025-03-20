@@ -30,17 +30,14 @@ const products = [
   { name: 'Integrations', description: 'Connect with third-party tools', href: '#', icon: SquaresPlusIcon },
   { name: 'Automations', description: 'Build strategic funnels that will convert', href: '#', icon: ArrowPathIcon },
 ]
-const callsToAction = [
-  { name: 'Watch demo', href: '#', icon: PlayCircleIcon },
-  { name: 'Contact sales', href: '#', icon: PhoneIcon },
-]
+
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
     <header className="bg-white">
-      <nav aria-label="Global" className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8">
+      <nav aria-label="Global" className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8 ">
         <div className="flex lg:flex-1">
           <a href="#" className="-m-1.5 p-1.5">
             <span className="sr-only">Your Company</span>
@@ -61,7 +58,7 @@ export default function Navbar() {
             <Bars3Icon aria-hidden="true" className="size-6" />
           </button>
         </div>
-        <PopoverGroup className="hidden lg:flex lg:gap-x-12">
+        <PopoverGroup className="hidden lg:flex lg:gap-x-12  ">
           <Popover className="relative">
             <PopoverButton className="flex items-center gap-x-1 text-sm/6 font-semibold text-gray-900">
               Product
@@ -91,22 +88,11 @@ export default function Navbar() {
                   </div>
                 ))}
               </div>
-              <div className="grid grid-cols-2 divide-x divide-gray-900/5 bg-gray-50">
-                {callsToAction.map((item) => (
-                  <a
-                    key={item.name}
-                    href={item.href}
-                    className="flex items-center justify-center gap-x-2.5 p-3 text-sm/6 font-semibold text-gray-900 hover:bg-gray-100"
-                  >
-                    <item.icon aria-hidden="true" className="size-5 flex-none text-gray-400" />
-                    {item.name}
-                  </a>
-                ))}
-              </div>
+              
             </PopoverPanel>
           </Popover>
 
-          <a href="#" className="text-sm/6 font-semibold text-gray-900">
+          <a href="#" className="text-sm/6 font-semibold text-gray-900 hover:bg-red-600">
             Features
           </a>
           <a href="#" className="text-sm/6 font-semibold text-gray-900">
@@ -116,11 +102,7 @@ export default function Navbar() {
             Company
           </a>
         </PopoverGroup>
-        <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <a href="#" className="text-sm/6 font-semibold text-gray-900">
-            Log in <span aria-hidden="true">&rarr;</span>
-          </a>
-        </div>
+        
       </nav>
       <Dialog open={mobileMenuOpen} onClose={setMobileMenuOpen} className="lg:hidden">
         <div className="fixed inset-0 z-10" />
@@ -152,7 +134,7 @@ export default function Navbar() {
                     <ChevronDownIcon aria-hidden="true" className="size-5 flex-none group-data-open:rotate-180" />
                   </DisclosureButton>
                   <DisclosurePanel className="mt-2 space-y-2">
-                    {[...products, ...callsToAction].map((item) => (
+                    {[...products ].map((item) => (
                       <DisclosureButton
                         key={item.name}
                         as="a"
@@ -183,14 +165,7 @@ export default function Navbar() {
                   Company
                 </a>
               </div>
-              <div className="py-6">
-                <a
-                  href="#"
-                  className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
-                >
-                  Log in
-                </a>
-              </div>
+              
             </div>
           </div>
         </DialogPanel>
