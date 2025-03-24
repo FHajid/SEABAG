@@ -10,7 +10,6 @@ import {
   Popover,
   PopoverButton,
   PopoverGroup,
-  PopoverPanel,
 } from '@headlessui/react'
 import {
   ArrowPathIcon,
