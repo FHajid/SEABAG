@@ -3,6 +3,7 @@ import Hero from "../component/hero"
 import Navbar from "../component/navbar"
 import ImageGallery from "../component/sectionGalery"
 import SectionContent from "../component/sectionContent"
+import CardSection from "../component/cardsevtion"
 
 export default function Home() {
   return (
@@ -11,11 +12,12 @@ export default function Home() {
 
       <Navbar />
       <Hero />
+      <CardSection />
       <SectionContent />
       <ImageGallery />
+      
       <Footer />
 
-    
     </div>
   )
 }
