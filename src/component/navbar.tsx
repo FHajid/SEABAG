@@ -6,21 +6,15 @@ import {
   DialogPanel,
   Disclosure,
   DisclosureButton,
-  DisclosurePanel,
   Popover,
   PopoverButton,
   PopoverGroup,
 } from '@headlessui/react'
 import {
-  ArrowPathIcon,
-  Bars3Icon,
-  ChartPieIcon,
-  CursorArrowRaysIcon,
-  FingerPrintIcon,
-  SquaresPlusIcon,
+  Bars3Icon, 
   XMarkIcon,
+
 } from '@heroicons/react/24/outline'
-import { ChevronDownIcon, } from '@heroicons/react/20/solid'
 
 
 
