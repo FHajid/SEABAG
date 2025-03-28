@@ -1,13 +1,28 @@
-export default function Footer () {
+export default function Footer() {
     return (
-        <footer className="bg-gray-100 p-4">
-            <div className="container mx-auto flex flex-col md:flex-row justify-center items-center">
-                <div className="text-gray-700 text-center md:text-left mb-2 md:mb-0">
-                    Your Text Here
-                </div>
-                <div className="flex justify-center md:justify-end">
-                    <img src="path/to/your/logo.png" alt="Logo" className="h-10" />
-                </div>
-            </div>
-        </footer>
-    )}
+      <footer className="bg-gray-100 py-6 border-t border-gray-200">
+        <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4">
+          
+          {/* Left Side - Text or Tagline */}
+          <div className="text-gray-600 text-sm text-center md:text-left">
+            © {new Date().getFullYear()} OceanTech. All rights reserved.
+          </div>
+  
+          {/* Right Side - Logo or Socials */}
+          <div className="flex items-center gap-4">
+            <img
+              src="/logo.png" // Make sure the image exists in your /public folder
+              alt="Logo"
+              className="h-8"
+            />
+  
+            {/* Optional: Add social icons (Heroicons or others) */}
+            {/* <a href="#" className="text-gray-500 hover:text-[#457b9d]">
+              <TwitterIcon />
+            </a> */}
+          </div>
+        </div>
+      </footer>
+    )
+  }
+  

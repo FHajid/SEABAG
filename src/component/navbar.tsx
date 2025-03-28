@@ -68,12 +68,7 @@ export default function Navbar() {
           >
             Marketplace
           </a>
-          <a
-            href="#"
-            className="text-sm font-semibold text-gray-900 px-3 py-2 rounded-md transition hover:bg-[#457b9d] hover:text-white"
-          >
-            Company
-          </a>
+          
         </PopoverGroup>
       </nav>
 
@@ -117,12 +112,7 @@ export default function Navbar() {
             >
               Marketplace
             </a>
-            <a
-              href="#"
-              className="block rounded-md px-4 py-2 text-base font-semibold text-gray-900 hover:bg-gray-100"
-            >
-              Company
-            </a>
+            
           </div>
         </DialogPanel>
       </Dialog>
