@@ -9,7 +9,7 @@ export default function Hero() {
             <img
               src="/hero-img.png"
               alt="Hero Illustration"
-              className="w-full h-auto rounded-2xl shadow-lg"
+              className="w-900 h-auto rounded-2xl shadow-lg"
             />
           </div>
 
