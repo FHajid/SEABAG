@@ -1,8 +1,11 @@
 // src/components/AboutPage.tsx
 import { FaRecycle, FaTruckMoving, FaLeaf, FaUsers } from 'react-icons/fa';
+import Navbar from '../component/navbar';
 
 export default function About() {
   return (
+    <>
+    <Navbar />
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
       <div className="bg-gradient-to-r from-green-600 to-emerald-800 py-20 text-white">
@@ -102,6 +105,7 @@ const StatCard = ({ icon: Icon, title, value }: {
     <div className="text-2xl font-bold text-gray-800 mb-2">{value}</div>
     <div className="text-gray-600">{title}</div>
   </div>
+  </>
 );
 
 // Data arrays
@@ -131,4 +135,5 @@ const teamMembers = [
     image: "https://example.com/ceo.jpg" // Replace with actual images
   },
   // Add other team members...
+
 ];
