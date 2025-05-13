@@ -27,7 +27,7 @@ export default function Navbar() {
       <nav className="mx-auto max-w-7xl flex items-center justify-between px-6 py-4 lg:px-8">
         {/* Logo */}
         <div className="flex lg:flex-1">
-          <a href="#" className="-m-1.5 p-1.5 flex items-center gap-2">
+          <a href="/" className="-m-1.5 p-1.5 flex items-center gap-2">
             <img
               alt="Logo"
               src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600"
@@ -101,7 +101,7 @@ export default function Navbar() {
             </Disclosure>
 
             <a
-              href="#"
+              href="/about"
               className="block rounded-md px-4 py-2 text-base font-semibold text-gray-900 hover:bg-gray-100"
             >
               About
