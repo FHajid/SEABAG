@@ -8,12 +8,12 @@ export default function App() {
     <Router>
       <nav>
         <Link to="/"></Link>
-        <Link to="/about"></Link>
+        <Link to="/About"></Link>
       </nav>
       
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
+        <Route path="/About" element={<About />} />
       </Routes>
     </Router>
   );

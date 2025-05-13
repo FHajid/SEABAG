@@ -57,7 +57,7 @@ export default function Navbar() {
           </Popover>
 
           <a
-            href="/about"
+            href="/About"
             className="text-sm font-semibold text-gray-900 px-3 py-2 rounded-md transition hover:bg-[#457b9d] hover:text-white"
           >
             About
@@ -101,7 +101,7 @@ export default function Navbar() {
             </Disclosure>
 
             <a
-              href="/about"
+              href="/About"
               className="block rounded-md px-4 py-2 text-base font-semibold text-gray-900 hover:bg-gray-100"
             >
               About
