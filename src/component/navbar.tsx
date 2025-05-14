@@ -63,7 +63,7 @@ export default function Navbar() {
             About
           </a>
           <a
-            href="#"
+            href="/Contact"
             className="text-sm font-semibold text-gray-900 px-3 py-2 rounded-md transition hover:bg-[#457b9d] hover:text-white"
           >
             Marketplace
