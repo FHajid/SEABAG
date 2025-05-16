@@ -11,19 +11,24 @@ import {
   PopoverGroup,
 } from '@headlessui/react'
 import {
-  Bars3Icon, 
+  Bars3Icon,
   XMarkIcon,
-
 } from '@heroicons/react/24/outline'
-
-
-
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
+  const links = [
+    { name: 'Home', href: '/' },
+    { name: 'About', href: '/about' },
+    { name: 'Gallery', href: '/gallery' },
+    { name: 'Projects', href: '/projects' },
+    { name: 'Donate', href: '/donate' },
+    { name: 'Contact', href: '/contact' },
+  ]
+
   return (
-    <header className="bg-white shadow">
+    <header className="bg-white shadow sticky top-0 z-50">
       <nav className="mx-auto max-w-7xl flex items-center justify-between px-6 py-4 lg:px-8">
         {/* Logo */}
         <div className="flex lg:flex-1">
@@ -49,35 +54,25 @@ export default function Navbar() {
         </div>
 
         {/* Desktop navigation */}
-        <PopoverGroup className="hidden lg:flex lg:gap-x-8">
-          <Popover className="relative">
-            <PopoverButton className="flex items-center gap-x-1 text-sm font-semibold text-gray-900 px-3 py-2 rounded-md transition hover:bg-[#457b9d] hover:text-white">
-              Product
-            </PopoverButton>
-          </Popover>
-
-          <a
-            href="/About"
-            className="text-sm font-semibold text-gray-900 px-3 py-2 rounded-md transition hover:bg-[#457b9d] hover:text-white"
-          >
-            About
-          </a>
-          <a
-            href="/Contact"
-            className="text-sm font-semibold text-gray-900 px-3 py-2 rounded-md transition hover:bg-[#457b9d] hover:text-white"
-          >
-            Marketplace
-          </a>
-          
+        <PopoverGroup className="hidden lg:flex lg:gap-x-6">
+          {links.map((link) => (
+            <a
+              key={link.name}
+              href={link.href}
+              className="text-sm font-medium text-gray-700 px-4 py-2 rounded-md hover:bg-[#457b9d] hover:text-white transition"
+            >
+              {link.name}
+            </a>
+          ))}
         </PopoverGroup>
       </nav>
 
-      {/* Mobile menu dialog */}
+      {/* Mobile menu */}
       <Dialog open={mobileMenuOpen} onClose={setMobileMenuOpen} className="lg:hidden">
         <div className="fixed inset-0 z-10 bg-black/30" />
         <DialogPanel className="fixed inset-y-0 right-0 z-20 w-full max-w-sm bg-white px-6 py-6 shadow-lg">
           <div className="flex items-center justify-between">
-            <a href="#" className="-m-1.5 p-1.5 flex items-center gap-2">
+            <a href="/" className="-m-1.5 p-1.5 flex items-center gap-2">
               <img
                 alt="Logo"
                 src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600"
@@ -93,26 +88,16 @@ export default function Navbar() {
             </button>
           </div>
 
-          <div className="mt-6">
-            <Disclosure as="div" className="mb-4">
-              <DisclosureButton className="flex w-full items-center justify-between rounded-lg py-2 px-4 text-base font-semibold text-gray-900 hover:bg-gray-100">
-                Product
-              </DisclosureButton>
-            </Disclosure>
-
-            <a
-              href="/About"
-              className="block rounded-md px-4 py-2 text-base font-semibold text-gray-900 hover:bg-gray-100"
-            >
-              About
-            </a>
-            <a
-              href="#"
-              className="block rounded-md px-4 py-2 text-base font-semibold text-gray-900 hover:bg-gray-100"
-            >
-              Marketplace
-            </a>
-            
+          <div className="mt-6 space-y-2">
+            {links.map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                className="block rounded-md px-4 py-2 text-base font-semibold text-gray-900 hover:bg-gray-100"
+              >
+                {link.name}
+              </a>
+            ))}
           </div>
         </DialogPanel>
       </Dialog>
