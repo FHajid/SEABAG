@@ -4,10 +4,6 @@ import { useState } from 'react'
 import {
   Dialog,
   DialogPanel,
-  Disclosure,
-  DisclosureButton,
-  Popover,
-  PopoverButton,
   PopoverGroup,
 } from '@headlessui/react'
 import {
@@ -23,7 +19,7 @@ export default function Navbar() {
     { name: 'About', href: '/about' },
     { name: 'Gallery', href: '/gallery' },
     { name: 'Projects', href: '/projects' },
-    { name: 'Donate', href: '/donate' },
+    { name: 'News', href: '/news' },
     { name: 'Contact', href: '/contact' },
   ]
 
