@@ -20,43 +20,57 @@ export default function ProjectsPage() {
   const handleClose = () => setActiveProjectId(null);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-200 p-6">
-      <h1 className="text-3xl font-bold text-center mb-10 text-gray-800">My Projects</h1>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {projects.map((project) => (
-          <div
-            key={project.id}
-            className={`group p-6 rounded-2xl shadow-md transition-all duration-300 cursor-pointer transform hover:-translate-y-1 hover:shadow-lg border ${
-              activeProjectId === project.id ? 'bg-indigo-600 text-white' : 'bg-white'
-            }`}
-            onClick={() => handleOpen(project.id)}
-          >
-            <div className="flex items-center justify-between mb-4">
-              <h3 className="text-xl font-semibold">{project.title}</h3>
-              <FaFolderOpen className="text-indigo-500 group-hover:animate-pulse text-lg" />
-            </div>
-            <p className={`text-sm ${activeProjectId === project.id ? 'text-indigo-100' : 'text-gray-600'}`}>
-              {project.description}
-            </p>
-
-            {activeProjectId === project.id && (
-              <div className="mt-5 p-4 bg-white text-gray-800 shadow-md rounded-xl transition-all duration-300">
-                <h4 className="text-lg font-semibold mb-2">Project Description</h4>
-                <p className="text-sm">{project.description}</p>
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleClose();
-                  }}
-                  className="mt-4 flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition-all duration-300 font-medium"
-                >
-                  <FaTimes />
-                  Close Project
-                </button>
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-200 p-4 sm:p-6">
+      <h1 className="text-3xl font-bold text-center mb-8 sm:mb-10 text-gray-800">My Projects</h1>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {projects.map((project) => {
+          const isActive = activeProjectId === project.id;
+          return (
+            <div
+              key={project.id}
+              className={`relative group p-6 rounded-2xl shadow-md transition-all duration-300 cursor-pointer transform hover:-translate-y-1 hover:shadow-lg border ${
+                isActive ? 'bg-indigo-600 text-white' : 'bg-white'
+              }`}
+              onClick={() => handleOpen(project.id)}
+            >
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-lg sm:text-xl font-semibold">{project.title}</h3>
+                <FaFolderOpen className="text-indigo-500 group-hover:animate-pulse text-lg" />
               </div>
-            )}
-          </div>
-        ))}
+              <p className={`text-sm ${isActive ? 'text-indigo-100' : 'text-gray-600'}`}>
+                {project.description}
+              </p>
+
+              {isActive && (
+                <div className="absolute top-0 left-0 w-full h-full bg-white text-gray-800 rounded-2xl shadow-xl p-6 flex flex-col justify-between z-10 transition-all duration-300">
+                  <div className="flex justify-between items-start mb-4">
+                    <h4 className="text-lg font-semibold">Project Description</h4>
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleClose();
+                      }}
+                      className="text-gray-600 hover:text-red-500 transition-colors duration-300"
+                      aria-label="Close"
+                    >
+                      <FaTimes size={20} />
+                    </button>
+                  </div>
+                  <p className="text-sm mb-4">{project.description}</p>
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleClose();
+                    }}
+                    className="self-start mt-auto px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition-all duration-300 font-medium"
+                  >
+                    Close Project
+                  </button>
+                </div>
+              )}
+            </div>
+          );
+        })}
       </div>
     </div>
   );
