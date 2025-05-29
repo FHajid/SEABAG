@@ -1,44 +1,64 @@
+import { useState } from "react";
+
+const images = [
+  { id: 1, src: "/hero-img.png", alt: "Main Hero" },
+  { id: 2, src: "/hero-img2.png", alt: "Alternate View 1" },
+  { id: 3, src: "/hero-img3.png", alt: "Alternate View 2" }
+];
+
 export default function Hero() {
+  const [activeImage, setActiveImage] = useState(images[0]);
+
   return (
-    <section className="bg-white py-16">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="flex flex-col-reverse md:flex-row items-center gap-12">
-          
-          {/* Left side: Image */}
-          <div className="w-full md:w-1/2">
-            <img
-              src="/hero-img.png"
-              alt="Hero Illustration"
-              className="w-900 h-auto rounded-2xl shadow-lg"
-            />
-          </div>
+    <section className="relative w-full h-screen overflow-hidden">
+      {/* Background Image */}
+      <img
+        src={activeImage.src}
+        alt={activeImage.alt}
+        className="absolute inset-0 w-full h-full object-cover z-0 transition-all duration-500"
+      />
 
-          {/* Right side: Text */}
-          <div className="w-full md:w-1/2 text-center md:text-left">
-            <h1 className="text-4xl sm:text-5xl font-extrabold text-gray-900 leading-tight">
-              Welcome to Our Company
-            </h1>
-            <p className="mt-6 text-lg text-gray-600">
-              We provide innovative solutions to boost your business and help you grow.
-              Let’s build something great together.
-            </p>
-            <div className="mt-8 flex flex-col sm:flex-row justify-center md:justify-start gap-4">
-              <a
-                href="#"
-                className="px-6 py-3 bg-[#457b9d] text-white rounded-lg font-semibold hover:bg-[#386481] transition"
-              >
-                Get Started
-              </a>
-              <a
-                href="#"
-                className="px-6 py-3 border border-[#457b9d] text-[#457b9d] rounded-lg font-semibold hover:bg-[#f1faff] transition"
-              >
-                Learn More
-              </a>
-            </div>
-          </div>
-
+      {/* Overlay Content */}
+      <div className="absolute inset-0 bg-black/50 z-10 flex flex-col justify-center items-center text-center px-6">
+        <h1 className="text-white text-4xl sm:text-6xl font-bold mb-4 drop-shadow-lg">
+          Welcome to Our Company
+        </h1>
+        <p className="text-white text-lg sm:text-xl max-w-2xl drop-shadow-md">
+          We provide innovative solutions to boost your business and help you grow.
+        </p>
+        <div className="mt-6 flex flex-col sm:flex-row gap-4">
+          <a
+            href="#"
+            className="px-6 py-3 bg-indigo-600 text-white rounded-lg font-semibold hover:bg-indigo-700 transition"
+          >
+            Get Started
+          </a>
+          <a
+            href="#"
+            className="px-6 py-3 border border-white text-white rounded-lg font-semibold hover:bg-white hover:text-indigo-600 transition"
+          >
+            Learn More
+          </a>
         </div>
+      </div>
+
+      {/* Image Thumbnails as Cards */}
+      <div className="absolute bottom-6 right-6 z-20 flex flex-col gap-4">
+        {images
+          .filter((img) => img.id !== activeImage.id)
+          .map((img) => (
+            <div
+              key={img.id}
+              onClick={() => setActiveImage(img)}
+              className="w-20 h-14 sm:w-24 sm:h-16 rounded-lg overflow-hidden border-2 border-white cursor-pointer transform hover:scale-105 hover:z-30 shadow-lg transition"
+            >
+              <img
+                src={img.src}
+                alt={img.alt}
+                className="w-full h-full object-cover"
+              />
+            </div>
+          ))}
       </div>
     </section>
   );

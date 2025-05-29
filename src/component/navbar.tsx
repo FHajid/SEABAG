@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import {
   Dialog,
   DialogPanel,
@@ -13,6 +13,7 @@ import {
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
 
   const links = [
     { name: 'Home', href: '/' },
@@ -23,8 +24,24 @@ export default function Navbar() {
     { name: 'Contact', href: '/contact' },
   ]
 
+  // Scroll detection
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 10)
+    }
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
   return (
-    <header className="bg-white shadow sticky top-0 z-50">
+   <header
+    className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+      scrolled
+        ? 'bg-white shadow'
+        : 'bg-white/4 backdrop-blur-md'
+    }`}
+  >
+
       <nav className="mx-auto max-w-7xl flex items-center justify-between px-6 py-4 lg:px-8">
         {/* Logo */}
         <div className="flex lg:flex-1">
