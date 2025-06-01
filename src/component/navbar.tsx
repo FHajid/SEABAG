@@ -38,7 +38,7 @@ export default function Navbar() {
     className={`fixed top-0 w-full z-50 transition-all duration-300 ${
       scrolled
         ? 'bg-white shadow'
-        : 'bg-white/4 backdrop-blur-md'
+        : ''
     }`}
   >
 
@@ -56,17 +56,20 @@ export default function Navbar() {
         </div>
 
         {/* Mobile menu button */}
-        <div className="flex lg:hidden">
-          <button
-            onClick={() => setMobileMenuOpen(true)}
-            className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
-          >
-            <span className="sr-only">Open main menu</span>
-            <Bars3Icon className="h-6 w-6" />
-          </button>
-        </div>
+       {scrolled && (
+          <div className="flex lg:hidden">
+            <button
+              onClick={() => setMobileMenuOpen(true)}
+              className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
+            >
+              <span className="sr-only">Open main menu</span>
+              <Bars3Icon className="h-6 w-6" />
+            </button>
+          </div>
+        )}
 
         {/* Desktop navigation */}
+        {scrolled && (
         <PopoverGroup className="hidden lg:flex lg:gap-x-6">
           {links.map((link) => (
             <a
@@ -78,14 +81,17 @@ export default function Navbar() {
             </a>
           ))}
         </PopoverGroup>
+      )}
       </nav>
 
       {/* Mobile menu */}
-      <Dialog open={mobileMenuOpen} onClose={setMobileMenuOpen} className="lg:hidden">
-        <div className="fixed inset-0 z-10 bg-black/30" />
-        <DialogPanel className="fixed inset-y-0 right-0 z-20 w-full max-w-sm bg-white px-6 py-6 shadow-lg">
+      <Dialog open={mobileMenuOpen} onClose={setMobileMenuOpen} className="relative z-50 lg:hidden">
+      <div className="fixed inset-0 bg-black/40 backdrop-blur-sm" aria-hidden="true" />
+      <div className="fixed inset-0 flex justify-end">
+        <Dialog.Panel className="w-full max-w-sm bg-white p-6 shadow-xl transition-all duration-300">
+          {/* Header with Logo and Close Button */}
           <div className="flex items-center justify-between">
-            <a href="/" className="-m-1.5 p-1.5 flex items-center gap-2">
+            <a href="/" className="flex items-center gap-2">
               <img
                 alt="Logo"
                 src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600"
@@ -95,25 +101,29 @@ export default function Navbar() {
             </a>
             <button
               onClick={() => setMobileMenuOpen(false)}
-              className="-m-2.5 rounded-md p-2.5 text-gray-700"
+              className="p-2 text-gray-700 rounded-md hover:bg-gray-100 transition"
             >
               <XMarkIcon className="h-6 w-6" />
             </button>
           </div>
 
-          <div className="mt-6 space-y-2">
+          {/* Mobile Nav Links */}
+          <div className="mt-6 space-y-3">
             {links.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
-                className="block rounded-md px-4 py-2 text-base font-semibold text-gray-900 hover:bg-gray-100"
+                className="block text-base font-medium text-gray-700 px-4 py-2 rounded-md hover:bg-[#457b9d] hover:text-white transition"
+                onClick={() => setMobileMenuOpen(false)}
               >
                 {link.name}
               </a>
             ))}
           </div>
-        </DialogPanel>
-      </Dialog>
+        </Dialog.Panel>
+      </div>
+    </Dialog>
+
     </header>
   )
 }
