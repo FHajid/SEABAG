@@ -3,7 +3,6 @@
 import { useState, useEffect } from 'react'
 import {
   Dialog,
-  DialogPanel,
   PopoverGroup,
 } from '@headlessui/react'
 import {
