@@ -2,8 +2,8 @@ import { useState } from "react";
 
 const images = [
   { id: 1, src: "/hero-img.png", alt: "Main Hero" },
-  { id: 2, src: "/hero-img2.png", alt: "Alternate View 1" },
-  { id: 3, src: "/hero-img3.png", alt: "Alternate View 2" }
+  { id: 2, src: "/polution_sea1.jpg", alt: "Alternate View 1" },
+  { id: 3, src: "/polution_sea2.jpg", alt: "Alternate View 2" }
 ];
 
 export default function Hero() {
@@ -42,22 +42,26 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Image Thumbnails as Cards */}
-      <div className="absolute bottom-6 right-6 z-20 flex flex-col gap-4">
-        {images
-          .filter((img) => img.id !== activeImage.id)
-          .map((img) => (
-            <div
-              key={img.id}
-              onClick={() => setActiveImage(img)}
-              className="w-20 h-14 sm:w-24 sm:h-16 rounded-lg overflow-hidden border-2 border-white cursor-pointer transform hover:scale-105 hover:z-30 shadow-lg transition"
-            >
-              <img
-                src={img.src}
-                alt={img.alt}
-                className="w-full h-full object-cover"
-              />
-            </div>
+      {/* Image Thumbnails as Cards (side by side) */}
+      <div className="absolute bottom-6 right-6 z-20 flex flex-row-reverse gap-1">
+      {images
+        .filter((img) => img.id !== activeImage.id)
+        .map((img, index, arr) => (
+          <div
+            key={img.id}
+            onClick={() => setActiveImage(img)}
+            className={`relative w-26 h-38 sm:w-36 sm:h-44 rounded-lg overflow-hidden border-2 cursor-pointer shadow-lg transition-transform transform hover:-translate-y-4 hover:z-30 ${
+              index !== arr.length - 1 ? '-ml-10' : ''
+            }`}
+            style={{ zIndex: index }}
+          >
+            <img
+              src={img.src}
+              alt={img.alt}
+              className="w-full h-full object-cover"
+            />
+          </div>
+
           ))}
       </div>
     </section>

@@ -4,7 +4,6 @@ import Home from './pages/home';
 import About from './pages/about';
 import Contact from './pages/contact';
 import Gallery from './pages/gallery';
-import News from "./pages/news";
 import Projects from './pages/projects';
 
 export default function App() {
@@ -15,7 +14,6 @@ export default function App() {
         <Link to="/About"></Link>
         <Link to="/contact"></Link>
         <Link to="/gallery"></Link>
-        <Link to="/news"></Link>
         <Link to="/projects"></Link>
 
       </nav>
@@ -25,7 +23,6 @@ export default function App() {
         <Route path="/About" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/gallery" element={<Gallery />} />
-        <Route path="/news" element={<News />} />
         <Route path="/projects" element={<Projects />} />
       </Routes>
     </Router>
