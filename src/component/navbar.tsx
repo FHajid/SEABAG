@@ -35,7 +35,7 @@ export default function Navbar() {
    <header
     className={`fixed top-0 w-full z-50 transition-all duration-300 ${
       scrolled
-        ? 'bg-white shadow'
+        ? 'bg-[#f4f4f4] shadow'
         : ''
     }`}
   >
@@ -49,7 +49,7 @@ export default function Navbar() {
               src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600"
               className="h-8 w-auto"
             />
-            <span className="text-[#457b9d] font-bold text-xl">OceanTech</span>
+            <span className="text-[#457b9d] font-bold text-xl">SeaBag</span>
           </a>
         </div>
 

@@ -1,20 +1,34 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-const images = [
-  { id: 1, src: "/hero-img.png", alt: "Main Hero" },
-  { id: 2, src: "/polution_sea1.jpg", alt: "Alternate View 1" },
-  { id: 3, src: "/polution_sea2.jpg", alt: "Alternate View 2" }
+const videos = [
+  { id: 1, src: "/Ocean_pollution1.mp4", alt: "Main Hero" },
+  { id: 2, src: "/Ocean_pollution2.mp4", alt: "Alternate View 1" },
+  { id: 3, src: "/Ocean_pollution3.mp4", alt: "Alternate View 2" }
 ];
 
 export default function Hero() {
-  const [activeImage, setActiveImage] = useState(images[0]);
+  const [activeVideoIndex, setActiveVideoIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveVideoIndex((prev) => (prev + 1) % videos.length);
+    }, 10000); // 10 seconds
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const activeVideo = videos[activeVideoIndex];
 
   return (
     <section className="relative w-full h-screen overflow-hidden">
-      {/* Background Image */}
-      <img
-        src={activeImage.src}
-        alt={activeImage.alt}
+      {/* Background Video */}
+      <video
+        key={activeVideo.id}
+        src={activeVideo.src}
+        autoPlay
+        loop
+        muted
+        playsInline
         className="absolute inset-0 w-full h-full object-cover z-0 transition-all duration-500"
       />
 
@@ -42,27 +56,20 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Image Thumbnails as Cards (side by side) */}
-      <div className="absolute bottom-6 right-6 z-20 flex flex-row-reverse gap-1">
-      {images
-        .filter((img) => img.id !== activeImage.id)
-        .map((img, index, arr) => (
-          <div
-            key={img.id}
-            onClick={() => setActiveImage(img)}
-            className={`relative w-26 h-38 sm:w-36 sm:h-44 rounded-lg overflow-hidden border-2 cursor-pointer shadow-lg transition-transform transform hover:-translate-y-4 hover:z-30 ${
-              index !== arr.length - 1 ? '-ml-10' : ''
+      {/* Bullet Controls */}
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex gap-3">
+        {videos.map((video, idx) => (
+          <button
+            key={video.id}
+            onClick={() => setActiveVideoIndex(idx)}
+            className={`w-2 h-2 rounded-full border-1 transition-all cursor-pointer ${
+              idx === activeVideoIndex
+                ? "bg-white border-indigo-600 scale-110"
+                : "bg-gray-400 border-transparent hover:scale-105"
             }`}
-            style={{ zIndex: index }}
-          >
-            <img
-              src={img.src}
-              alt={img.alt}
-              className="w-full h-full object-cover"
-            />
-          </div>
-
-          ))}
+            aria-label={`Select ${video.alt}`}
+          />
+        ))}
       </div>
     </section>
   );
