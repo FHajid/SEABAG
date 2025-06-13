@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 
 const images = [
   { id: 1, src: "/hero-img.png", alt: "Main Hero" },
-  { id: 2, src: "/pollution_sea1.jpg", alt: "Alternate View 1" },
-  { id: 3, src: "/pollution_sea2.jpg", alt: "Alternate View 2" }
+  { id: 2, src: "/polution_sea1.jpg", alt: "Alternate View 1" },
+  { id: 3, src: "/polution_sea2.jpg", alt: "Alternate View 2" }
 ];
 
 export default function Hero() {
