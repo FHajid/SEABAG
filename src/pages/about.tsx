@@ -1,31 +1,57 @@
-// src/components/AboutPage.tsx
 import { FaRecycle, FaTruckMoving, FaLeaf, FaUsers } from 'react-icons/fa';
 import Navbar from '../component/navbar';
 
-const services = [
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import { Navigation } from 'swiper/modules';
+
+
+const serviceSlides = [
   {
     icon: FaRecycle,
     title: "Recycling Programs",
-    description: "Advanced sorting systems for maximum material recovery"
+    description: "Advanced sorting systems for maximum material recovery.",
+    image: "/recyled_product.jpg",
   },
   {
     icon: FaTruckMoving,
-    title: "Residential Pickup",
-    description: "Weekly collection with 99.9% reliability rate"
+    title: "Smart Waste Solutions",
+    description: "Weekly collection with 99.9% reliability rate.",
+    image: "/wasted_solution.jpg",
   },
   {
     icon: FaLeaf,
-    title: "Organic Waste",
-    description: "Composting services for food and yard waste"
-  }
+    title: "Planet-First Services",
+    description: "Composting services for food and yard waste.",
+    image: "/planet_ocean.jpg",
+  },
 ];
+
 
 const teamMembers = [
   {
     name: "John Greenfield",
     position: "CEO & Founder",
     bio: "20+ years in waste management innovation",
-    image: "https://example.com/ceo.jpg" // Replace with actual images
+    image: "/jhon.jpg",
+    
+  },
+
+  {
+    name: "sandy Smith",
+    position: "Marketing Director",
+    bio: "10+ years in waste management innovation",
+    image: "/sandy_smith.jpg",
+    
+  },
+
+  {
+    name: "Mark Johnson",
+    position: "research Director",
+    bio: "9+ years in waste management innovation",
+    image: "mark_johnson.jpg",
+    
   },
 ];
 
@@ -34,10 +60,10 @@ const StatCard = ({ icon: Icon, title, value }: {
   title: string,
   value: string 
 }) => (
-  <div className="bg-white p-6 rounded-xl shadow-md">
-    <Icon className="text-emerald-600 text-4xl mx-auto mb-4" />
-    <div className="text-2xl font-bold text-gray-800 mb-2">{value}</div>
-    <div className="text-gray-600">{title}</div>
+  <div className="bg-white p-6 rounded-xl shadow-md text-center">
+    <Icon className="text-blue-500 text-4xl mx-auto mb-4" />
+    <div className="text-2xl font-bold text-gray-800">{value}</div>
+    <div className="text-gray-600 mt-1">{title}</div>
   </div>
 );
 
@@ -45,72 +71,94 @@ export default function About() {
   return (
     <>
       <Navbar />
-      <div className="min-h-screen bg-gray-50">
+      <div className="bg-white text-gray-800">
+        
         {/* Hero Section */}
-        <div className="bg-gradient-to-r from-green-600 to-emerald-800 py-20 text-white">
-          <div className="container mx-auto px-4">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">About EcoClean Waste Solutions</h1>
-            <p className="text-xl md:text-2xl max-w-3xl">
-              Committed to cleaner communities through sustainable waste management
-            </p>
-          </div>
-        </div>
+        <section className="h-screen flex items-center justify-center border-b border-gray-200 bg-white">
+            <div className="text-center px-4">
+              <h1 className="text-4xl md:text-5xl font-bold mb-4 text-blue-500">
+                About SEABAG Waste Solutions
+              </h1>
+              <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+                Committed to building cleaner communities through smart, sustainable waste management.
+              </p>
+            </div>
+          </section>
 
-        {/* Mission Section */}
-        <section className="container mx-auto px-4 py-16">
-          <div className="bg-white rounded-2xl shadow-lg p-8 md:p-12">
-            <h2 className="text-3xl font-bold text-gray-800 mb-6">Our Mission</h2>
-            <p className="text-gray-600 text-lg leading-relaxed max-w-4xl">
-              At EcoClean, we're revolutionizing waste management through innovative recycling programs,
-              eco-friendly disposal methods, and community education. Our goal is to divert 75% of
-              waste from landfills by 2025 while maintaining exceptional service reliability.
-            </p>
+
+
+
+        {/* Services Section */}
+        <section className="min-h-screen bg-white border-t border-gray-200 flex items-center py-12">
+          <div className="w-full max-w-6xl mx-auto px-4">
+            <h2 className="text-3xl font-bold mb-12 text-center text-blue-500">Driving a Cleaner Future</h2>
+
+            <Swiper
+              modules={[Navigation]}
+              navigation
+              spaceBetween={50}
+              slidesPerView={1}
+              className="w-full"
+            >
+              {serviceSlides.map((service, idx) => (
+                <SwiperSlide key={idx}>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    {/* Image */}
+                    <img
+                      src={service.image}
+                      alt={service.title}
+                      className="w-full h-64 sm:h-80 md:h-[600px] lg:h-[800px] object-cover rounded-xl shadow"
+                    />
+
+                    {/* Text */}
+                    <div className="text-left px-2 md:px-4">
+                      <div className="flex items-center gap-3 mb-4">
+                        <service.icon className="text-blue-500 text-3xl" />
+                        <h3 className="text-2xl font-bold">{service.title}</h3>
+                      </div>
+                      <p className="text-gray-600 text-lg">{service.description}</p>
+                    </div>
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
           </div>
         </section>
 
-        {/* Services Grid */}
-        <section className="bg-emerald-50 py-16">
-          <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold text-gray-800 mb-12 text-center">Our Services</h2>
-            <div className="grid md:grid-cols-3 gap-8">
-              {services.map((service) => (
-                <div key={service.title} className="bg-white p-6 rounded-xl shadow-md">
-                  <service.icon className="text-emerald-600 text-4xl mb-4" />
-                  <h3 className="text-xl font-semibold mb-2">{service.title}</h3>
-                  <p className="text-gray-600">{service.description}</p>
-                </div>
-              ))}
+
+
+        {/* Why Choose Us */}
+        <section className="py-16">
+          <div className="max-w-6xl mx-auto px-4 text-center">
+            <h2 className="text-3xl font-bold mb-12 text-blue-500">Why Choose EcoClean?</h2>
+            <div className="grid md:grid-cols-4 gap-8">
+              <StatCard icon={FaLeaf} title="Eco-Friendly" value="85% Waste Diverted" />
+              <StatCard icon={FaTruckMoving} title="Vehicles" value="20+ Green Fleet" />
+              <StatCard icon={FaUsers} title="Clients" value="50,000+ Served" />
+              <StatCard icon={FaRecycle} title="Recycled" value="1M+ Tons/Yr" />
             </div>
           </div>
         </section>
 
-        {/* Why Choose Us */}
-        <section className="container mx-auto px-4 py-16">
-          <h2 className="text-3xl font-bold text-gray-800 mb-12 text-center">Why Choose EcoClean?</h2>
-          <div className="grid md:grid-cols-4 gap-8 text-center">
-            <StatCard icon={FaLeaf} title="Eco-Friendly" value="85% Waste Diverted" />
-            <StatCard icon={FaTruckMoving} title="Vehicles" value="20+ Green Fleet" />
-            <StatCard icon={FaUsers} title="Clients" value="50,000+ Served" />
-            <StatCard icon={FaRecycle} title="Recycled" value="1M+ Tons/Yr" />
-          </div>
-        </section>
-
         {/* Team Section */}
-        <section className="bg-gray-100 py-16">
-          <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold text-gray-800 mb-12 text-center">Our Leadership</h2>
+        <section className="py-16 bg-gray-50">
+          <div className="max-w-6xl mx-auto px-4 text-center">
+            <h2 className="text-3xl font-bold mb-12 text-blue-500">Our Crew</h2>
             <div className="grid md:grid-cols-3 gap-8">
               {teamMembers.map((member) => (
-                <div key={member.name} className="bg-white rounded-xl shadow-md overflow-hidden">
-                  <img 
-                    src={member.image} 
+                <div
+                  key={member.name}
+                  className="bg-white rounded-xl shadow overflow-hidden flex flex-col"
+                >
+                  <img
+                    src={member.image}
                     alt={member.name}
-                    className="w-full h-64 object-cover"
+                    className="w-full object-cover max-h-100 md:max-h-116"
                   />
-                  <div className="p-6">
-                    <h3 className="text-xl font-bold">{member.name}</h3>
-                    <p className="text-emerald-600 mb-2">{member.position}</p>
-                    <p className="text-gray-600">{member.bio}</p>
+                  <div className="p-6 flex-1 flex flex-col">
+                    <h3 className="text-xl font-bold mb-1">{member.name}</h3>
+                    <p className="text-blue-500 font-medium mb-2">{member.position}</p>
+                    <p className="text-gray-600 text-sm">{member.bio}</p>
                   </div>
                 </div>
               ))}
@@ -118,12 +166,17 @@ export default function About() {
           </div>
         </section>
 
-        {/* CTA Section */}
-        <section className="bg-emerald-800 text-white py-16">
-          <div className="container mx-auto px-4 text-center">
-            <h2 className="text-3xl font-bold mb-6">Join Our Green Revolution</h2>
-            <p className="text-xl mb-8">Get started with sustainable waste management today</p>
-            <button className="bg-white text-emerald-800 px-8 py-3 rounded-full font-semibold hover:bg-emerald-100 transition-colors duration-300">
+
+        {/* CTA */}
+        <section className="py-20 border-t border-gray-200 text-center">
+          <div className="max-w-4xl mx-auto px-4">
+            <h2 className="text-3xl font-bold text-blue-500 mb-4">
+              Join Our Green Revolution
+            </h2>
+            <p className="text-gray-700 text-lg mb-8">
+              Let’s work together toward a cleaner, more sustainable future.
+            </p>
+            <button className="bg-blue-500 text-white px-6 py-3 rounded-full font-semibold hover:bg-blue-600 transition">
               Schedule a Consultation
             </button>
           </div>

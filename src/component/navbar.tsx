@@ -46,7 +46,7 @@ export default function Navbar() {
           <a href="/" className="-m-1.5 p-1.5 flex items-center gap-2">
             <img
               alt="Logo"
-              src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600"
+              src="/logo.png"
               className="h-8 w-auto"
             />
             <span className="text-[#457b9d] font-bold text-xl">SeaBag</span>

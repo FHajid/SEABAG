@@ -5,6 +5,8 @@ import About from './pages/about';
 import Contact from './pages/contact';
 import Gallery from './pages/gallery';
 import Projects from './pages/projects';
+import '@fortawesome/fontawesome-free/css/all.min.css';
+
 
 export default function App() {
   return (

@@ -1,48 +1,87 @@
 import { useState } from "react";
+import { Transition } from "@headlessui/react"; // for fade-in effect
 
 const ImageGallery = () => {
   const images = [
-    "/pante.jpg",
-    "/images/pic2.jpg",
-    "/images/pic3.jpg",
-    "/images/pic4.jpg",
+    {
+      src: "/ocean_clean.jpg",
+      caption: "Pristine Coastal Beach",
+    },
+    {
+      src: "/ocean_clean2.jpg",
+      caption: "Underwater Cleanup Team",
+    },
+    {
+      src: "/ocean_clean3.jpg",
+      caption: "Collected Ocean Waste",
+    },
+    {
+      src: "/ocean_clean4.jpg",
+      caption: "Community in Action",
+    },
   ];
+
   const [selectedImage, setSelectedImage] = useState(images[0]);
+  const [fade, setFade] = useState(true);
+
+  const handleImageClick = (img: typeof selectedImage) => {
+    setFade(false);
+    setTimeout(() => {
+      setSelectedImage(img);
+      setFade(true);
+    }, 150); // transition delay
+  };
 
   return (
-    <section className="max-w-6xl mx-auto px-4 py-10 grid grid-cols-1 md:grid-cols-2 gap-8">
-      {/* Left side: Image and Thumbnails */}
-      <div>
-        {/* Main Image */}
-        <img
-          src={selectedImage}
-          alt="Selected"
-          className="w-full h-80 object-cover rounded-xl shadow"
-        />
+    <section className="max-w-6xl mx-auto px-4 py-20 grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+      {/* Left side: Image Display */}
+      <div data-aos="fade-right">
+        <Transition
+          show={fade}
+          enter="transition-opacity duration-500"
+          enterFrom="opacity-0"
+          enterTo="opacity-100"
+        >
+          <div className="relative w-full h-96 rounded-xl overflow-hidden shadow-lg">
+            <img
+              src={selectedImage.src}
+              alt="Main Display"
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 flex items-center justify-center bg-black/30 text-white text-lg font-medium px-4 text-center">
+              {selectedImage.caption}
+            </div>
+
+          </div>
+        </Transition>
 
         {/* Thumbnails */}
-        <div className="flex gap-3 mt-4">
+        <div className="flex flex-wrap gap-3 mt-4">
           {images.map((img, idx) => (
             <img
               key={idx}
-              src={img}
+              src={img.src}
               alt={`Thumbnail ${idx}`}
-              onClick={() => setSelectedImage(img)}
-              className={`w-20 h-20 object-cover rounded-lg cursor-pointer border-2 ${
-                selectedImage === img ? "border-red-600" : "border-transparent"
+              onClick={() => handleImageClick(img)}
+              className={`w-20 h-20 object-cover rounded-lg cursor-pointer border-2 transition-transform duration-300 hover:scale-110 ${
+                selectedImage.src === img.src ? "border-blue-500" : "border-transparent"
               }`}
             />
           ))}
         </div>
       </div>
 
-      {/* Right side: Text Content */}
-      <div className="flex flex-col justify-center">
-        <h2 className="text-3xl font-bold text-gray-900 mb-4">Gallery Showcase</h2>
-        <p className="text-gray-600">
-          This is a beautiful section where you can preview different images. Click on any
-          thumbnail below the main image to view it on the left. This layout is perfect
-          for showcasing portfolios, product images, or artwork.
+      {/* Right side: Description */}
+      <div data-aos="fade-left" className="text-left space-y-6">
+        <h2 className="text-4xl font-extrabold text-gray-800">Ocean Cleanup Gallery</h2>
+        <p className="text-gray-600 text-lg">
+          Discover how communities, volunteers, and organizations are joining hands to fight
+          ocean pollution. These images showcase the real impact of our actions – one beach,
+          one wave, one cleanup at a time.
+        </p>
+        <p className="text-gray-500 text-md">
+          Click on the thumbnails to view more powerful moments from our mission to protect
+          the oceans.
         </p>
       </div>
     </section>

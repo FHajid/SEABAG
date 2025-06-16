@@ -1,77 +1,111 @@
-import { useState } from 'react';
-import { FaFolderOpen, FaTimes } from 'react-icons/fa';
+import { useState } from "react";
+import { FaTimes } from "react-icons/fa";
+import Navbar from "../component/navbar";
+import Footer from "../component/footer";
 
-interface Project {
-  id: number;
-  title: string;
-  description: string;
-}
+const cards = [
+  {
+    id: "ocean",
+    title: "Ocean Pollution",
+    image: "ocean.jpg",
+    description: `The ocean faces severe plastic and oil pollution due to human activities like littering, shipping, and industrial waste. Every year, millions of tons of plastic end up in the sea, harming marine life like turtles, dolphins, and fish.
 
-const projects: Project[] = [
-  { id: 1, title: 'Project Alpha', description: 'A sample project showing basic functionality' },
-  { id: 2, title: 'Project Beta', description: 'Another sample project with different features' },
-  { id: 3, title: 'Project Gamma', description: 'Third project demonstrating various capabilities' },
+What can we do?
+- Reduce the use of single-use plastics such as straws, bags, and bottles.
+- Participate in or support beach and ocean clean-up events.
+- Choose sustainable seafood and reduce oil usage.
+- Support organizations and policies that protect the ocean.
+
+Protecting our oceans means preserving life itself. 🌊`,
+  },
+  {
+    id: "river",
+    title: "River Contamination",
+    image: "/river.jpg",
+    description: `Rivers are crucial for drinking water, agriculture, and biodiversity, yet they’re under threat. Contamination from factories, domestic waste, and agriculture runoff pollutes rivers globally.
+
+What causes it?
+- Industrial discharge without filtration.
+- Improper sewage treatment.
+- Agricultural chemicals and plastic dumping.
+
+Prevention starts with:
+- Regulating waste management.
+- Educating the public on pollution.
+- Creating buffer zones with plants that filter runoff.
+
+Clean rivers support healthier communities and ecosystems. 🏞️`,
+  },
 ];
 
 export default function ProjectsPage() {
-  const [activeProjectId, setActiveProjectId] = useState<number | null>(null);
-
-  const handleOpen = (id: number) => setActiveProjectId(id);
-  const handleClose = () => setActiveProjectId(null);
+  const [active, setActive] = useState<string | null>(null);
+  const selectedCard = cards.find((c) => c.id === active);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-100 to-gray-200 p-4 sm:p-6">
-      <h1 className="text-3xl font-bold text-center mb-10 text-gray-800">My Projects</h1>
+    <>
+      <Navbar />
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {projects.map((project) => {
-          const isActive = activeProjectId === project.id;
+      {/* Full-height section */}
+      <div className="bg-gradient-to-br from-gray-100 to-gray-200 pt-16">
+        <h1 className="text-4xl font-bold text-center text-blue-700 mb-10">
+          🌍 Environmental Focus
+        </h1>
 
-          return (
+        <div className=" min-h-screen flex flex-col lg:flex-row w-full">
+          {cards.map((card) => (
             <div
-              key={project.id}
-              className={`relative p-6 rounded-xl border shadow-md cursor-pointer transition duration-300 hover:shadow-lg ${
-                isActive ? 'bg-indigo-600 text-white' : 'bg-white text-gray-800'
-              }`}
-              onClick={() => handleOpen(project.id)}
+              key={card.id}
+              onClick={() => setActive(card.id)}
+              className="w-full lg:w-1/2 h-[100vh] cursor-pointer group overflow-hidden"
             >
-              <div className="flex items-center justify-between mb-3">
-                <h3 className="text-lg font-semibold">{project.title}</h3>
-                <FaFolderOpen className="text-indigo-500" />
+              <div className="relative w-full h-full">
+                <img
+                  src={card.image}
+                  alt={card.title}
+                  className="w-full h-full object-cover object-center"
+                />
+                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 flex items-center justify-center transition duration-300">
+                  <h2 className="text-white text-3xl font-bold text-center px-2">
+                    {card.title}
+                  </h2>
+                </div>
               </div>
-              <p className={`text-sm ${isActive ? 'text-indigo-100' : 'text-gray-600'}`}>
-                {project.description}
+            </div>
+          ))}
+        </div>
+
+
+        {/* Modal */}
+        {selectedCard && (
+          <div className="fixed inset-0 z-50 bg-black bg-opacity-70 flex items-center justify-center p-6">
+            <div className="bg-white max-w-2xl w-full rounded-2xl shadow-2xl p-8 relative overflow-auto max-h-[90vh]">
+              <button
+                onClick={() => setActive(null)}
+                className="absolute top-4 right-4 text-gray-600 hover:text-red-600 bg-gray-200 hover:bg-gray-300 rounded-full p-2 transition"
+              >
+                <FaTimes size={20} />
+              </button>
+
+              <h2 className="text-2xl sm:text-3xl font-bold text-blue-700 mb-4">
+                {selectedCard.title}
+              </h2>
+              <p className="text-gray-700 whitespace-pre-line text-sm sm:text-base leading-relaxed">
+                {selectedCard.description}
               </p>
 
-              {/* Expanded Panel */}
-              {isActive && (
-                <div
-                  className="absolute inset-0 bg-white text-gray-900 p-5 rounded-xl shadow-lg z-10 overflow-auto"
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  {/* Close button top-right */}
-                  <button
-                    className="absolute top-3 right-3 text-gray-600 hover:text-red-500"
-                    onClick={handleClose}
-                  >
-                    <FaTimes size={20} />
-                  </button>
-
-                  <h4 className="text-lg font-bold mb-2">Project Description</h4>
-                  <p className="text-sm">{project.description}</p>
-
-                  <button
-                    onClick={handleClose}
-                    className="mt-4 px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 transition"
-                  >
-                    Close Project
-                  </button>
-                </div>
-              )}
+              <button
+                onClick={() => setActive(null)}
+                className="mt-6 w-full py-3 bg-blue-600 text-white font-medium rounded hover:bg-blue-700 transition"
+              >
+                Close
+              </button>
             </div>
-          );
-        })}
+          </div>
+        )}
       </div>
-    </div>
+
+      <Footer />
+    </>
   );
 }
