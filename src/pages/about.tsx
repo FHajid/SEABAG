@@ -131,7 +131,7 @@ export default function About() {
         <section className="py-16">
           <div className="max-w-6xl mx-auto px-4 text-center">
             <h2 className="text-3xl font-bold mb-12 text-blue-500">Why Choose EcoClean?</h2>
-            <div className="grid md:grid-cols-4 gap-8">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               <StatCard icon={FaLeaf} title="Eco-Friendly" value="85% Waste Diverted" />
               <StatCard icon={FaTruckMoving} title="Vehicles" value="20+ Green Fleet" />
               <StatCard icon={FaUsers} title="Clients" value="50,000+ Served" />
@@ -141,30 +141,38 @@ export default function About() {
         </section>
 
         {/* Team Section */}
-        <section className="py-16 bg-gray-50">
-          <div className="max-w-6xl mx-auto px-4 text-center">
-            <h2 className="text-3xl font-bold mb-12 text-blue-500">Our Crew</h2>
-            <div className="grid md:grid-cols-3 gap-8">
-              {teamMembers.map((member) => (
-                <div
-                  key={member.name}
-                  className="bg-white rounded-xl shadow overflow-hidden flex flex-col"
-                >
-                  <img
-                    src={member.image}
-                    alt={member.name}
-                    className="w-full object-cover max-h-100 md:max-h-116"
-                  />
-                  <div className="p-6 flex-1 flex flex-col">
-                    <h3 className="text-xl font-bold mb-1">{member.name}</h3>
-                    <p className="text-blue-500 font-medium mb-2">{member.position}</p>
-                    <p className="text-gray-600 text-sm">{member.bio}</p>
-                  </div>
-                </div>
-              ))}
+    <section className="py-16 bg-gray-50">
+  <div className="max-w-6xl mx-auto px-4 text-center">
+    <h2 className="text-3xl font-bold mb-12 text-blue-500">Our Crew</h2>
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+      {teamMembers.map((member) => (
+        <div
+          key={member.name}
+          className="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col text-left"
+        >
+          {/* Image Wrapper with Responsive Height */}
+          <div className="w-full h-[400px] sm:h-[300px] md:h-[320px] overflow-hidden">
+            <img
+              src={member.image}
+              alt={member.name}
+              className="w-full h-full object-cover object-top"
+            />
+          </div>
+
+          {/* Text Content */}
+          <div className="p-4 flex-1 flex flex-col justify-between">
+            <div>
+              <h3 className="text-lg font-bold mb-1">{member.name}</h3>
+              <p className="text-blue-500 font-medium mb-2">{member.position}</p>
+              <p className="text-gray-600 text-sm">{member.bio}</p>
             </div>
           </div>
-        </section>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
 
 
         {/* CTA */}
