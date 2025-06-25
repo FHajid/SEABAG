@@ -66,7 +66,7 @@ export default function Contact() {
                 <input
                   type="text"
                   className="w-full border border-gray-300 rounded-md px-4 py-2 mt-1 focus:ring-2 focus:ring-blue-400 focus:outline-none"
-                  placeholder="I want to hire you quickly"
+                  placeholder="What's on your mind?"
                 />
               </div>
               <div>
@@ -74,7 +74,7 @@ export default function Contact() {
                 <textarea
                   rows={4}
                   className="w-full border border-gray-300 rounded-md px-4 py-2 mt-1 focus:ring-2 focus:ring-blue-400 focus:outline-none"
-                  placeholder="Write your message here"
+                  placeholder="Heyo leave a message"
                 ></textarea>
               </div>
               <button
