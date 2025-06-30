@@ -148,14 +148,14 @@ export default function About() {
       {teamMembers.map((member) => (
         <div
           key={member.name}
-          className="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col text-left"
+          className="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col text-left transform transition duration-500 hover:scale-105 hover:shadow-2xl"
         >
-          {/* Image Wrapper with Responsive Height */}
+          {/* Image Wrapper */}
           <div className="w-full h-[400px] sm:h-[300px] md:h-[320px] overflow-hidden">
             <img
               src={member.image}
               alt={member.name}
-              className="w-full h-full object-cover object-top"
+              className="w-full h-full object-cover object-top transition duration-700 ease-in-out"
             />
           </div>
 
@@ -168,6 +168,7 @@ export default function About() {
             </div>
           </div>
         </div>
+
       ))}
     </div>
   </div>
